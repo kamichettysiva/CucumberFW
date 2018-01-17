@@ -1,4 +1,4 @@
-package firstTest;
+package Runner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
         "junit:target/cucumber-results.xml"
 },
         features =  "src/test/java/Features",
-        glue = {"StepDefinitions"}
+        glue = {"Steps"}
 
 
 )
