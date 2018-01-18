@@ -2,6 +2,7 @@ package Steps;
 
 
 import Setup.Environment_Setup;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,20 +13,22 @@ public class LoginSteps {
 
     Environment_Setup env = new Environment_Setup();
 
-
-    @Given("^I navigate to login page$")
-    public void i_navigate_to_login_page() {
-        driver = env.driver("firefox");
+    @Given("^I navigate to login page in \"([^\"]*)\"$")
+    public void iNavigateToLoginPageIn(String browser) {
+        driver = env.driver(browser);
         System.out.println("lala");
-        driver.get("http://www.toolsqa.com");
-        driver.close();
+        if(browser.equals("firefox")) {
+            driver.get("http://www.toolsqa.com");
+        }else if(browser.equals("chrome")){
+            driver.navigate().to("http://www.toolsqa.com");
         }
+        driver.close();
+    }
+
 
     @And("^I enter user name admin and password admin$")
     public void i_enter_user_name_admin_and_password_admin() {
-        driver = env.driver("chrome");
-        driver.navigate().to("http://google.com");
-        driver.close();
+
 
     }
 
@@ -39,4 +42,6 @@ public class LoginSteps {
     public void i_should_see_user_form()  {
         // Write code here that turns the phrase above into concrete actions
     }
+
+
 }

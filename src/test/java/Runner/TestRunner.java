@@ -12,7 +12,8 @@ import org.junit.runner.RunWith;
         "junit:target/cucumber-results.xml"
 },
         features =  "src/test/java/Features",
-        glue = {"Steps"}
+        glue = {"Steps"},
+        tags = {"~@ignored"}
 
 
 )
