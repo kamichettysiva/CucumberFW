@@ -18,3 +18,9 @@ public class Common {
         }
     }
 }
+
+@FunctionalInterface
+interface trynow{
+    void laka(WebDriver driver, By by);
+
+        }
