@@ -2,9 +2,8 @@ package Steps;
 
 
 import Setup.Environment_Setup;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import Setup.Common;
+import cucumber.api.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +14,7 @@ public class LoginSteps {
 
 
     Environment_Setup env = new Environment_Setup();
+    Common common = new Common();
 
     @Given("^I navigate to login page in \"([^\"]*)\"$")
     public void iNavigateToLoginPageIn(String browser) {
@@ -31,43 +31,9 @@ public class LoginSteps {
 
     @And("^I enter user name admin and password admin$")
     public void i_enter_user_name_admin_and_password_admin() {
-        try {
-            WebElement Home = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
-            Home.click();
-        }
-        catch(StaleElementReferenceException ex)
-        {
-            WebElement Home = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
-            Home.click();
-        }
-
-        try {
-            WebElement Tutorial = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]/a/span[1]/span/span"));
-            Tutorial.click();
-        }
-        catch(StaleElementReferenceException ex)
-        {
-            WebElement Tutorial = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
-            Tutorial.click();
-        }
-
-        try {
-            WebElement Maven = driver.findElement(By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a"));
-            Maven.click();
-        }
-        catch(StaleElementReferenceException ex)
-        {
-            WebElement Maven = driver.findElement(By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a"));
-            Maven.click();
-        }
-
-   /*     WebElement Home = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span")));
-        Home.click();
-        WebElement Tutorial = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]/a/span[1]/span/span")));
-        Tutorial.click();
-        WebElement Maven = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a")));
-        Maven.click();*/
-
+        common.safeClickOnElement(driver,By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
+        common.safeClickOnElement(driver,By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]/a/span[1]/span/span"));
+        common.safeClickOnElement(driver,By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a"));
         }
 
     @And("^click login button$")
