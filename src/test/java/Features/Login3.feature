@@ -1,4 +1,4 @@
-Feature: Login Feature 2
+Feature: Login Feature
   Just to test a login functionality
 
   @Chrome
@@ -7,6 +7,3 @@ Feature: Login Feature 2
     And I enter user name admin and password admin
     And click login button
     Then I should see user form
-
-
-

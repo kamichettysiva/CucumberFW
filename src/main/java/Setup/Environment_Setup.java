@@ -1,14 +1,17 @@
 package Setup;
 
+import java.lang.String;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Environment_Setup {
-    public static String driverPath = "C:\\Users\\anjali\\IdeaProjects\\CucumberFW\\Drivers\\";
+
+    public static String driverPath = System.getProperty("user.dir").toString() + "\\Drivers\\";
     public static WebDriver driver;
 
     public WebDriver driver(String browser) {
+        System.out.println(driverPath);
         if (browser.equals("firefox")) {
             System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver.exe");
             driver = new FirefoxDriver();

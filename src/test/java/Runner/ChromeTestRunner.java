@@ -7,11 +7,10 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(plugin = { "html:target/cucumber-html-report",
-        "json:target/cucumber.json", "pretty:target/cucumber-pretty.txt",
-        "usage:target/cucumber-usage.json",
+        "json:target/cucumber_Chrome.json", "pretty:target/cucumber-pretty.txt",
         "junit:target/cucumber-results.xml"
 },
-        features =  "src/test/java/Features/Login2.feature",
+        features =  {"src/test/java/Features/Login.feature","src/test/java/Features/Login3.feature"},
         glue = {"Steps"},
         tags = {"@Chrome"}
 

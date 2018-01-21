@@ -60,7 +60,7 @@
                 <version>3.7.0</version>
                 <configuration>
                    <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk1.8.0_111\bin\javac.exe</executable>
+                    <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
@@ -95,7 +95,7 @@
                         <configuration>
                             <projectName>CucumberFW</projectName>
                             <outputDirectory>${project.build.directory}/extended-reports</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/</cucumberOutput>
                         </configuration>
                     </execution>
                 </executions>

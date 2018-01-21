@@ -2,17 +2,13 @@ package Steps;
 
 
 import Setup.Environment_Setup;
-import com.google.common.base.Function;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import org.hamcrest.Condition;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginSteps {
     public static WebDriver driver;
@@ -35,19 +31,42 @@ public class LoginSteps {
 
     @And("^I enter user name admin and password admin$")
     public void i_enter_user_name_admin_and_password_admin() {
+        try {
+            WebElement Home = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
+            Home.click();
+        }
+        catch(StaleElementReferenceException ex)
+        {
+            WebElement Home = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
+            Home.click();
+        }
 
-        Wait<WebDriver> stubbornWait = new FluentWait<WebDriver>(driver)
-                .withTimeout(30, SECONDS)
-                .pollingEvery(5, SECONDS)
-                .ignoring(NoSuchElementException.class)
-                .ignoring(StaleElementReferenceException.class);
+        try {
+            WebElement Tutorial = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]/a/span[1]/span/span"));
+            Tutorial.click();
+        }
+        catch(StaleElementReferenceException ex)
+        {
+            WebElement Tutorial = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
+            Tutorial.click();
+        }
 
-        WebElement Home = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span")));
+        try {
+            WebElement Maven = driver.findElement(By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a"));
+            Maven.click();
+        }
+        catch(StaleElementReferenceException ex)
+        {
+            WebElement Maven = driver.findElement(By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a"));
+            Maven.click();
+        }
+
+   /*     WebElement Home = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span")));
         Home.click();
         WebElement Tutorial = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]/a/span[1]/span/span")));
         Tutorial.click();
         WebElement Maven = stubbornWait.until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a")));
-        Maven.click();
+        Maven.click();*/
 
         }
 
