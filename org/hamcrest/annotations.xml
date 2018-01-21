@@ -1,0 +1,5 @@
+<root>
+    <item name='org.hamcrest.Condition'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

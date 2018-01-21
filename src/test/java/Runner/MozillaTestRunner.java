@@ -11,12 +11,12 @@ import org.junit.runner.RunWith;
         "usage:target/cucumber-usage.json",
         "junit:target/cucumber-results.xml"
 },
-        features =  "src/test/java/Features",
+        features =  "src/test/java/Features/Login.feature",
         glue = {"Steps"},
-        tags = {"~@ignored"}
+        tags = {"@Mozilla"}
 
 
 )
 
-public class TestRunner {
+public class MozillaTestRunner {
 }
