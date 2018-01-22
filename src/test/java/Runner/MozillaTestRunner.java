@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         "json:target/cucumber_Mozilla.json", "pretty:target/cucumber-pretty.txt",
         "junit:target/cucumber-results.xml"
 },
-        features =  "src/test/java/Features/Login1.feature",
+        features =  "src/test/java/Features/",
         glue = {"Steps"},
         tags = {"@Mozilla"}
 
