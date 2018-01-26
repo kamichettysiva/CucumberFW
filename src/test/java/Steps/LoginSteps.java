@@ -6,7 +6,9 @@ import Setup.Common;
 import cucumber.api.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class LoginSteps {
@@ -21,9 +23,9 @@ public class LoginSteps {
         driver = env.driver(browser);
         System.out.println("lala");
         if(browser.equals("firefox")) {
-            driver.get("http://www.toolsqa.com");
+            driver.get("https://www.google.com");
         }else if(browser.equals("chrome")){
-            driver.navigate().to("http://www.toolsqa.com");
+            driver.navigate().to("https://www.google.com");
         }
 
     }
@@ -32,9 +34,13 @@ public class LoginSteps {
     @And("^I enter user name admin and password admin$")
     public void i_enter_user_name_admin_and_password_admin() {
 
-        common.safeClickOnElement(driver,By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[1]/a/span[1]/span/span"));
-        common.safeClickOnElement(driver,By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]/a/span[1]/span/span"));
-        common.safeClickOnElement(driver,By.xpath("/html/body/div[1]/footer/div[1]/div/div/section[3]/div[2]/b[9]/a"));
+       //common.safeClickOnElement(driver,By.linkText("Sign in"));
+        WebElement myDynamicElement = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("idSIButton9")));
+        if(myDynamicElement.isDisplayed()) {
+            common.safeClickOnElement(driver, By.id("idSIButton9"));
+        }
+       //common.safeClickOnElement(driver,By.id("usernameError"));
         }
 
     @And("^click login button$")
