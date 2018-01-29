@@ -33,12 +33,13 @@ public class MCSSSteps {
 
     @And("^Select account \"([^\"]*)\" in selection page$")
     public void selectAccountInSelectionPage(String accountID) {
-        driver.findElement(By.xpath("//*[@id=\"" + accountID.substring(1,9) + "\"]")).click();
+        common.safeClickOnElement(driver, By.xpath("//*[@id=\"" + accountID.substring(1,9) + "\"]"));
         }
 
-    @Then("^Verify the account ID in landing page$")
-    public void verifyTheAccountIDInLandingPage() {
-        assertEquals(driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div/div[2]/div/div[2]/div/fieldset/span/div[2]/span")).getText(),accountID);
+    @Then("^Verify the account \"([^\"]*)\" in landing page$")
+    public void verifyTheAccountInLandingPage(String accountID) {
+        WebElement displayAcc = common.safeFindElement(driver,By.xpath("//*[@id=\"uniform-view386\"]/span"));
+        assertEquals(displayAcc.getText(),accountID);
     }
 
     @And("^Click on Account Settings$")
@@ -70,6 +71,4 @@ public class MCSSSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
-
-
 }
