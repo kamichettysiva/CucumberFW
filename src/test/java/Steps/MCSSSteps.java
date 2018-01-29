@@ -1,33 +1,29 @@
 package Steps;
 
 import Setup.Common;
+import Runner.FirefoxTestRunner;
 import Setup.Environment_Setup;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
 import static Setup.Environment_Setup.driver;
+import static org.junit.Assert.assertEquals;
+
 
 public class MCSSSteps {
 
     Environment_Setup env = new Environment_Setup();
     Common common = new Common();
+    String accountID;
 
-    @Given("^Navigate to MCSS login pages in \"([^\"]*)\"$")
-    public void navigateToMCSSLoginPagesIn(String browser) {
-        driver = env.driver(browser);
-        if(browser.equals("firefox")) {
-            driver.get("https://petselfservice.astro.com.my/mcssclient/mcss/web/");
-        }else if(browser.equals("chrome")){
-            driver.navigate().to("https://petselfservice.astro.com.my/mcssclient/mcss/web/");
-        }
-    }
-    @And("^Login with contact ID \"([^\"]*)\"$")
+    @Given("^Login with contact ID \"([^\"]*)\"$")
     public void loginWithContactID(String contactID) {
    WebElement contactIDField = driver.findElement(By.xpath(" /html/body/center/div/div[2]/div[2]/form/table/tbody/tr[11]/td[2]/input"));
    contactIDField.sendKeys(contactID);
@@ -41,8 +37,8 @@ public class MCSSSteps {
         }
 
     @Then("^Verify the account ID in landing page$")
-    public void verifyTheAccountIDInLandingPage() throws Throwable {
-        driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div/div[2]/div/div[2]/div/fieldset/span/div[2]/span")).getText() = accountID;
+    public void verifyTheAccountIDInLandingPage() {
+        assertEquals(driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div/div[2]/div/div[2]/div/fieldset/span/div[2]/span")).getText(),accountID);
     }
 
     @And("^Click on Account Settings$")

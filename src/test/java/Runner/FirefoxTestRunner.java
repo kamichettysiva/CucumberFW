@@ -1,8 +1,15 @@
 package Runner;
 
+import Setup.Common;
+import Setup.Environment_Setup;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+
+import static Setup.Environment_Setup.driver;
 
 @RunWith(Cucumber.class)
 
@@ -18,5 +25,19 @@ import org.junit.runner.RunWith;
 )
 
 public class FirefoxTestRunner {
+    static Environment_Setup env = new Environment_Setup();
+    @BeforeClass
+    public static void setup() {
+        driver = env.driver("firefox");
+        driver.get("https://petselfservice.astro.com.my/mcssclient/mcss/web/");
+        System.out.println("Ran the before");
+    }
+
+
+    @AfterClass
+    public static void teardown() {
+        driver.close();
+        System.out.println("Ran the after");
+    }
 
 }
