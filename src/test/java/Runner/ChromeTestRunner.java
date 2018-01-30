@@ -17,9 +17,9 @@ import static Setup.Environment_Setup.driver;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(plugin = { "html:target/cucumber-html-report",
+@CucumberOptions(plugin = { "html:target/chrome-html-report",
         "json:target/cucumber_Chrome.json", "pretty:target/cucumber-pretty.txt",
-        "junit:target/cucumber-results.xml"
+        "junit:target/chrome-results.xml"
 },
         features = "src/test/java/Features/MCSS_Basic.feature",
         glue = {"Steps"},
