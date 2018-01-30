@@ -6,7 +6,7 @@ Feature: MCSS Basic Flow
   Scenario: Change mailing address
     Given Login with contact ID "1460584"
     And Select account "0806268281" in selection page
-    Then Verify the account "08062682" in landing page
+    Then Verify the account "0806268281" in landing page
     And Click on Account Settings
     And Expand Addresses
     And Click on Edit Mail Address
