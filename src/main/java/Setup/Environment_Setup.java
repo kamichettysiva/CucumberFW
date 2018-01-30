@@ -17,10 +17,12 @@ public class Environment_Setup {
             //System.out.println( driverPath + JavaVersion + "geckodriver.exe");
             System.setProperty("webdriver.gecko.driver", driverPath + JavaVersion + "geckodriver.exe");
             driver = new FirefoxDriver();
+            driver.manage().window().maximize();
             return driver;
         } else if (browser.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
             driver = new ChromeDriver();
+            driver.manage().window().maximize();
             return driver;
         }
         return null;
