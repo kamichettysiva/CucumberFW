@@ -14,7 +14,7 @@ public class Environment_Setup {
 
     public WebDriver driver(String browser) {
         if (browser.equals("firefox") ){
-            System.out.println( driverPath + JavaVersion + "geckodriver.exe");
+            //System.out.println( driverPath + JavaVersion + "geckodriver.exe");
             System.setProperty("webdriver.gecko.driver", driverPath + JavaVersion + "geckodriver.exe");
             driver = new FirefoxDriver();
             return driver;
