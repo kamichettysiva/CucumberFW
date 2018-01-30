@@ -51,7 +51,7 @@ public class MCSSSteps {
 
     @And("^Expand Addresses$")
     public void expandAddresses(){
-        WebElement Addresses = driver.findElement(By.xpath("//*[@id=\"ui-id-1\"]/span[2]"));
+        WebElement Addresses = common.safeFindElement(driver,By.xpath("//*[@id=\"ui-id-1\"]/span[2]"));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", Addresses);
         Addresses.click();
         }
