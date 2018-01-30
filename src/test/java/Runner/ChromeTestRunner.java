@@ -2,10 +2,14 @@ package Runner;
 
 import Setup.Environment_Setup;
 import cucumber.api.CucumberOptions;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +26,10 @@ import static Setup.Environment_Setup.driver;
         tags = {"@Chrome"}
 
 
+
 )
+
+
 
 public class ChromeTestRunner {
     static Environment_Setup env = new Environment_Setup();
@@ -39,4 +46,6 @@ public class ChromeTestRunner {
         driver.close();
         System.out.println("Ran the after");
     }
+
+
 }

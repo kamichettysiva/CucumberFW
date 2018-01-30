@@ -2,25 +2,34 @@ package Steps;
 
 import Setup.Common;
 
+
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
 import static Setup.Environment_Setup.driver;
 import static org.junit.Assert.assertEquals;
 
 
+
 public class MCSSSteps {
-    Common common = new Common();
 
-
+    private Scenario myScenario;
+    @Before()
+    public void embedScreenshotStep(Scenario scenario) {
+        myScenario = scenario;
+        }
+        Common common = new Common();
     @Given("^Login with contact ID \"([^\"]*)\"$")
     public void loginWithContactID(String contactID) {
         WebElement contactIDField = driver.findElement(By.xpath(" /html/body/center/div/div[2]/div[2]/form/table/tbody/tr[11]/td[2]/input"));
-   contactIDField.sendKeys(contactID);
-   common.safeClickOnElement(driver,By.xpath("/html/body/center/div/div[2]/div[2]/form/table/tbody/tr[20]/td/input"));
+        contactIDField.sendKeys(contactID);
+        common.embedScreenshot(myScenario);
+        common.safeClickOnElement(driver,By.xpath("/html/body/center/div/div[2]/div[2]/form/table/tbody/tr[20]/td/input"));
 
     }
 
@@ -73,8 +82,16 @@ public class MCSSSteps {
 
     @And("^Click on Save button$")
     public void clickOnSaveButton() {
-       driver.findElement(By.xpath("//*[@id=\"editAddressForm\"]/div[1]/ul[15]/a/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"editAddressForm\"]/div[1]/ul[15]/a/span")).click();
     }
 
 
+
+    @After()
+    public void tearDown(Scenario scenario) {
+        if (scenario.isFailed()) {
+            common.embedScreenshot(myScenario);
+        }
+        driver.close();
+    }
 }
