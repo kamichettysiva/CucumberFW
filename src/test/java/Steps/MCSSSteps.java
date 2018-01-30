@@ -92,6 +92,10 @@ public class MCSSSteps {
         if (scenario.isFailed()) {
             common.embedScreenshot(myScenario);
         }
-        driver.close();
-    }
+        if (driver.toString().indexOf("FirefoxDriver:") == 0){
+            driver.get("https://petselfservice.astro.com.my/mcssclient/mcss/web/");
+        }else if(driver.toString().indexOf("ChromeDriver:") == 0){
+            driver.navigate().to("https://petselfservice.astro.com.my/mcssclient/mcss/web/");
+        }
+        }
 }
