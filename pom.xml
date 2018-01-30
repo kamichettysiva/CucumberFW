@@ -72,7 +72,7 @@
                     <parallel>classes</parallel>
                     <forkMode>perthread</forkMode>
                     <threadCount>2</threadCount>
-                    <argLine>-Xmx512m</argLine>
+                    <argLine>-Xmx1024m -XX:MaxMetaspaceSize</argLine>
                     <includes>
                         <include>**/*Runner.java</include>
                     </includes>
