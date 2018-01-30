@@ -9,7 +9,7 @@ Feature: MCSS Basic Flow
     Then Verify the account "0806268281" in landing page
     And Click on Account Settings
     And Expand Addresses
-    And Click on Edit Email Address
+    And Click on Edit Mail Address
     And Fill all the mandatory address fields
     And Click on Save button
 
