@@ -26,7 +26,7 @@ public class MCSSSteps {
         Common common = new Common();
     @Given("^Login with contact ID \"([^\"]*)\"$")
     public void loginWithContactID(String contactID) {
-        WebElement contactIDField = driver.findElement(By.xpath(" /html/body/center/div/div[2]/div[2]/form/table/tbody/tr[11]/td[2]/input"));
+        WebElement contactIDField = common.safeFindElement(driver,By.xpath(" /html/body/center/div/div[2]/div[2]/form/table/tbody/tr[11]/td[2]/input"));
         contactIDField.sendKeys(contactID);
         common.embedScreenshot(myScenario);
         common.safeClickOnElement(driver,By.xpath("/html/body/center/div/div[2]/div[2]/form/table/tbody/tr[20]/td/input"));
@@ -35,7 +35,7 @@ public class MCSSSteps {
 
     @And("^Select account \"([^\"]*)\" in selection page$")
     public void selectAccountInSelectionPage(String accountID) {
-        common.safeClickOnElement(driver, By.xpath("//*[@id=\"" + accountID.substring(1,9) + "\"]"));
+        common.safeClickOnElement(driver, By.id(accountID.substring(1,9)));
         }
 
     @Then("^Verify the account \"([^\"]*)\" in landing page$")
@@ -46,7 +46,7 @@ public class MCSSSteps {
 
     @And("^Click on Account Settings$")
     public void clickOnAccountSettings() {
-        common.safeClickOnElement(driver, By.xpath("//*[@id=\"MyAccountProfile\"]/span/span"));
+        common.safeClickOnElement(driver, By.xpath("//*[@id=\"MyAccountProfile\"]"));
     }
 
     @And("^Expand Addresses$")

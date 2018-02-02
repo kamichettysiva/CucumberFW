@@ -3,6 +3,8 @@ package Setup;
 import cucumber.api.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,30 +16,22 @@ import static Setup.Environment_Setup.driver;
 public class Common {
     public void safeClickOnElement(WebDriver driver, By by){
         try {
-            WebElement element = (new WebDriverWait(driver, 60))
-                    .until(ExpectedConditions.presenceOfElementLocated(by));
-            element.click();
-        }
-        catch(StaleElementReferenceException ex)
+            clicker(driver, by);
+            }
+        catch(StaleElementReferenceException | MoveTargetOutOfBoundsException ex)
         {
-            WebElement element = (new WebDriverWait(driver, 60))
-                    .until(ExpectedConditions.presenceOfElementLocated(by));
-            element.click();
+            clicker(driver, by);
         }
     }
 
 
     public WebElement safeFindElement(WebDriver driver, By by){
         try {
-            WebElement element = (new WebDriverWait(driver, 60))
-                    .until(ExpectedConditions.presenceOfElementLocated(by));
-            return element;
+           return finder(driver, by);
         }
         catch(StaleElementReferenceException ex)
         {
-            WebElement element = (new WebDriverWait(driver, 60))
-                    .until(ExpectedConditions.presenceOfElementLocated(by));
-            return element;
+            return finder(driver, by);
         }
     }
 
@@ -61,6 +55,22 @@ public class Common {
         final byte[] screenshot = ((TakesScreenshot) driver)
                 .getScreenshotAs(OutputType.BYTES);
         scenario.embed(screenshot, "image/png"); //stick it in the report
+    }
+
+    public void clicker(WebDriver driver, By by){
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        element.click();
+
+        }
+
+    public WebElement finder(WebDriver driver, By by){
+        WebElement element = (new WebDriverWait(driver, 60))
+                .until(ExpectedConditions.presenceOfElementLocated(by));
+        return element;
+
     }
 }
 
